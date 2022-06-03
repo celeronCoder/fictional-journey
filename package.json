@@ -1,0 +1,32 @@
+{
+  "name": "fictional-journey",
+  "version": "1.0.0",
+  "main": "node_modules/expo/AppEntry.js",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web",
+    "eject": "expo eject",
+    "build:tailwind": "tailwindcss --input input.css --output tailwind.css --no-autoprefixer && tailwind-rn",
+    "dev:tailwind": "concurrently \"tailwindcss --input input.css --output tailwind.css --no-autoprefixer --watch\" \"tailwind-rn --watch\""
+  },
+  "dependencies": {
+    "expo": "~45.0.0",
+    "expo-status-bar": "~1.3.0",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-native": "0.68.2",
+    "react-native-bouncy-checkbox": "^2.1.10",
+    "react-native-vector-icons": "^9.1.0",
+    "react-native-web": "0.17.7"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.9",
+    "@types/react": "~17.0.21",
+    "@types/react-native": "~0.66.13",
+    "@types/react-native-vector-icons": "^6.4.10",
+    "typescript": "~4.3.5"
+  },
+  "private": true
+}
