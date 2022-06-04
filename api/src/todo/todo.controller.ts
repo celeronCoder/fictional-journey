@@ -100,7 +100,7 @@ export class TodoController {
     }
   }
 
-  @Get('/delete/:id')
+  @Delete('/:id')
   async deleteTodo(@Param('id') id: string): Promise<Response<Todo>> {
     try {
       const deletedTodo = await this.todoService.deleteTodo(id);
@@ -128,7 +128,7 @@ export class TodoController {
     }
   }
 
-  @Put('/update/:id')
+  @Put('/:id')
   async updateTodo(
     @Body() todo: TodoCreateDto,
     @Param('id') id: string,
