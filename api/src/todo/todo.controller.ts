@@ -10,6 +10,7 @@ import {
   Post,
   Put,
   UseInterceptors,
+  ValidationPipe,
 } from '@nestjs/common';
 import { TodoService } from './todo.service';
 import { Response } from '@/interface';
@@ -77,7 +78,9 @@ export class TodoController {
 
   @Post()
   @HttpCode(204)
-  async createTodo(@Body() todo: CreateTodoDto): Promise<Response<Todo>> {
+  async createTodo(
+    @Body(new ValidationPipe({ whitelist: true })) todo: CreateTodoDto,
+  ): Promise<Response<Todo>> {
     try {
       const newTodo = await this.todoService.createTodo(todo);
       if (newTodo)
@@ -136,7 +139,7 @@ export class TodoController {
 
   @Put('/:id')
   async updateTodo(
-    @Body() todo: CreateTodoDto,
+    @Body(new ValidationPipe({ whitelist: true })) todo: CreateTodoDto,
     @Param('id') id: string,
   ): Promise<Response<Todo>> {
     try {
