@@ -3,6 +3,7 @@ import {
   FastifyAdapter,
   NestFastifyApplication,
 } from '@nestjs/platform-fastify';
+import compression from 'fastify-compress';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
@@ -10,6 +11,7 @@ async function bootstrap() {
     AppModule,
     new FastifyAdapter({ logger: true }),
   );
+  await app.register(compression, { encodings: ['gzip'] });
   await app.listen(3000);
 }
 bootstrap();
