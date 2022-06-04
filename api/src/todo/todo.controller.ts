@@ -1,19 +1,22 @@
 import { TodoCreateDto } from './dto/todo.dto';
 import {
   Body,
+  CacheInterceptor,
   Controller,
+  Delete,
   Get,
   HttpCode,
   Param,
   Post,
   Put,
+  UseInterceptors,
 } from '@nestjs/common';
 import { TodoService } from './todo.service';
 import { Response } from '@/interface';
 import { Todo } from '@prisma/client';
-import { ParseCuidPipe } from './pipes/parsecuid.pipe';
 
 @Controller('todo')
+@UseInterceptors(CacheInterceptor)
 export class TodoController {
   constructor(private readonly todoService: TodoService) {}
 
