@@ -13,6 +13,9 @@ async function bootstrap() {
     new FastifyAdapter({ logger: true }),
   );
 
+  // global api prefix
+  app.setGlobalPrefix('api');
+
   // swagger setup
   const swaggerConfig = new DocumentBuilder()
     .setTitle('Todos API')
