@@ -4,7 +4,7 @@ import { PrismaService } from '@/prisma.service';
 import { TodoController } from './todo.controller';
 import { TodoService } from './todo.service';
 
-@Module({
+export const TodoModuleMetaData = {
   imports: [
     CacheModule.register<RedisClientOptions>({
       name: 'redis',
@@ -14,5 +14,7 @@ import { TodoService } from './todo.service';
   ],
   controllers: [TodoController],
   providers: [TodoService, PrismaService],
-})
+};
+
+@Module(TodoModuleMetaData)
 export class TodoModule {}
