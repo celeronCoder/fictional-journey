@@ -1,4 +1,4 @@
-import { TodoCreateDto } from './dto/todo.dto';
+import { CreateTodoDto } from './dto/todo.dto';
 import {
   Body,
   CacheInterceptor,
@@ -77,7 +77,7 @@ export class TodoController {
 
   @Post()
   @HttpCode(204)
-  async createTodo(@Body() todo: TodoCreateDto): Promise<Response<Todo>> {
+  async createTodo(@Body() todo: CreateTodoDto): Promise<Response<Todo>> {
     try {
       const newTodo = await this.todoService.createTodo(todo);
       if (newTodo)
@@ -104,7 +104,10 @@ export class TodoController {
   }
 
   @Delete('/:id')
-  async deleteTodo(@Param('id') id: string): Promise<Response<Todo>> {
+  async deleteTodo(
+    @Param('id')
+    id: string,
+  ): Promise<Response<Todo>> {
     try {
       const deletedTodo = await this.todoService.deleteTodo(id);
 
@@ -133,7 +136,7 @@ export class TodoController {
 
   @Put('/:id')
   async updateTodo(
-    @Body() todo: TodoCreateDto,
+    @Body() todo: CreateTodoDto,
     @Param('id') id: string,
   ): Promise<Response<Todo>> {
     try {
