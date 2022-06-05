@@ -1,10 +1,11 @@
-import { CacheModule, Module } from '@nestjs/common';
+import { CacheModule, Module, ModuleMetadata } from '@nestjs/common';
 import type { RedisClientOptions } from 'redis';
 import { PrismaService } from '@/prisma.service';
 import { TodoController } from './todo.controller';
 import { TodoService } from './todo.service';
+import { TodoGateway } from './todo.gateway';
 
-export const TodoModuleMetaData = {
+export const TodoModuleMetaData: ModuleMetadata = {
   imports: [
     CacheModule.register<RedisClientOptions>({
       name: 'redis',
@@ -13,7 +14,7 @@ export const TodoModuleMetaData = {
     }),
   ],
   controllers: [TodoController],
-  providers: [TodoService, PrismaService],
+  providers: [TodoService, PrismaService, TodoGateway],
 };
 
 @Module(TodoModuleMetaData)
